@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Only Divorce - Professional Support Platform</title>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'divorce-blue': '#1e40af',
+                        'divorce-dark': '#1e3a8a',
+                        'divorce-light': '#dbeafe',
+                        'divorce-accent': '#3b82f6',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'bounce-in': 'bounceIn 0.6s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
+                            '100%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.8)' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        bounceIn: {
+                            '0%': { transform: 'scale(0.3)', opacity: '0' },
+                            '50%': { transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 50%, #1d4ed8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(147, 197, 253, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-3d {
+            transform-style: preserve-3d;
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+            100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.4); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Modern Navigation -->
+    <nav class="bg-divorce-dark/95 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center animate-bounce-in">
+                        <i data-lucide="heart" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-white text-shadow">Only Divorce</h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center space-x-1">
+                        <i data-lucide="home" class="w-4 h-4"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="#features" class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center space-x-1">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                        <span>Features</span>
+                    </a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center space-x-1">
+                        <i data-lucide="users" class="w-4 h-4"></i>
+                        <span>About</span>
+                    </a>
+                    <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center space-x-1">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        <span>Contact</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="showLoginModal('user')" class="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 border border-white/20 hover:border-white/40">
+                        User Login
+                    </button>
+                    <button onclick="showLoginModal('moderator')" class="bg-divorce-accent/20 backdrop-blur-sm text-white hover:bg-divorce-accent/30 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 border border-divorce-accent/30 hover:border-divorce-accent/50">
+                        Moderator
+                    </button>
+                    <button onclick="showLoginModal('admin')" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-300 animate-glow">
+                        Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen flex items-center relative">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="text-white space-y-8 animate-slide-up">
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center animate-float">
+                                <i data-lucide="heart-crack" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div>
+                                <h1 class="text-5xl lg:text-6xl font-bold text-shadow">Only Divorce</h1>
+                                <p class="text-xl text-blue-100 mt-2">Professional Support Platform</p>
+                            </div>
+                        </div>
+
+                        <h2 class="text-3xl lg:text-4xl font-bold leading-tight">
+                            Your <span class="text-yellow-300">Trusted Partner</span> Through Life's
+                            <span class="bg-gradient-to-r from-pink-300 to-purple-300 bg-clip-text text-transparent">Most Challenging</span> Transition
+                        </h2>
+
+                        <p class="text-xl text-blue-100 leading-relaxed">
+                            We understand that sometimes divorce is the only path forward. Our platform provides
+                            <strong class="text-white">compassionate support</strong>,
+                            <strong class="text-white">practical guidance</strong>, and
+                            <strong class="text-white">emotional understanding</strong>
+                            without judgment or pressure for reconciliation.
+                        </p>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="showLoginModal('user')" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 animate-bounce-in flex items-center justify-center space-x-2 group">
+                            <i data-lucide="log-in" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                            <span>Start Your Journey</span>
+                        </button>
+                        <button onclick="scrollToFeatures()" class="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2">
+                            <i data-lucide="arrow-down" class="w-5 h-5 animate-bounce"></i>
+                            <span>Learn More</span>
+                        </button>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="flex items-center space-x-6 pt-8 border-t border-white/20">
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-green-400"></i>
+                            <span class="text-blue-100">100% Anonymous</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="users" class="w-5 h-5 text-green-400"></i>
+                            <span class="text-blue-100">Expert Moderators</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="lock" class="w-5 h-5 text-green-400"></i>
+                            <span class="text-blue-100">Secure Platform</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content - 3D Card -->
+                <div class="lg:flex justify-center hidden">
+                    <div class="perspective-1000">
+                        <div class="transform-3d card-hover bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 animate-slide-up" style="animation-delay: 0.3s;">
+                            <div class="text-center space-y-6">
+                                <!-- Animated Stats -->
+                                <div class="grid grid-cols-2 gap-6">
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 animate-pulse-glow">
+                                        <div class="text-3xl font-bold text-white mb-2 animate-bounce-in" style="animation-delay: 0.5s;">2,847+</div>
+                                        <div class="text-blue-100 text-sm">Active Users</div>
+                                    </div>
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 animate-pulse-glow" style="animation-delay: 0.2s;">
+                                        <div class="text-3xl font-bold text-white mb-2 animate-bounce-in" style="animation-delay: 0.7s;">156+</div>
+                                        <div class="text-blue-100 text-sm">Cities Covered</div>
+                                    </div>
+                                </div>
+
+                                <!-- Feature Icons -->
+                                <div class="grid grid-cols-3 gap-4">
+                                    <div class="bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl p-4 animate-float" style="animation-delay: 1s;">
+                                        <i data-lucide="heart" class="w-8 h-8 text-white mx-auto"></i>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl p-4 animate-float" style="animation-delay: 1.2s;">
+                                        <i data-lucide="users" class="w-8 h-8 text-white mx-auto"></i>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl p-4 animate-float" style="animation-delay: 1.4s;">
+                                        <i data-lucide="shield" class="w-8 h-8 text-white mx-auto"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Quote -->
+                                <blockquote class="text-blue-100 italic text-center">
+                                    "Sometimes the bravest thing you can do is walk away from what no longer serves you."
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="absolute top-20 right-20 animate-float opacity-20">
+            <i data-lucide="heart" class="w-16 h-16 text-white"></i>
+        </div>
+        <div class="absolute bottom-20 left-20 animate-float opacity-20" style="animation-delay: 2s;">
+            <i data-lucide="star" class="w-20 h-20 text-yellow-300"></i>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Why Choose <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Only Divorce</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We provide comprehensive support tailored to your unique situation with complete confidentiality and expert guidance.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Cards -->
+                <div class="group card-hover bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 animate-slide-up">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="users" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Expert Moderators</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Our experienced moderators provide guidance and facilitate meaningful conversations in a safe, supportive environment.
+                    </p>
+                    <div class="mt-6 flex items-center text-blue-600 font-semibold">
+                        <span>Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+
+                <div class="group card-hover bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="lock" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Complete Anonymity</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Your privacy is our priority. All sessions and interactions are completely anonymous and confidential.
+                    </p>
+                    <div class="mt-6 flex items-center text-green-600 font-semibold">
+                        <span>Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+
+                <div class="group card-hover bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">24/7 Support</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Access support whenever you need it through our platform and connected meeting sessions.
+                    </p>
+                    <div class="mt-6 flex items-center text-purple-600 font-semibold">
+                        <span>Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+
+                <div class="group card-hover bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 animate-slide-up" style="animation-delay: 0.6s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="globe" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Multi-Language Support</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Connect in your preferred language with support groups available in multiple languages.
+                    </p>
+                    <div class="mt-6 flex items-center text-orange-600 font-semibold">
+                        <span>Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+
+                <div class="group card-hover bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-8 animate-slide-up" style="animation-delay: 0.8s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="heart-handshake" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">No Reconciliation Pressure</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We respect your decision. Our focus is solely on providing support for your divorce journey.
+                    </p>
+                    <div class="mt-6 flex items-center text-red-600 font-semibold">
+                        <span>Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+
+                <div class="group card-hover bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 animate-slide-up" style="animation-delay: 1s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="video" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Premium Sessions</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Access premium one-on-one sessions and specialized group meetings for deeper support.
+                    </p>
+                    <div class="mt-6 flex items-center text-indigo-600 font-semibold">
+                        <span>Learn More</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div class="animate-bounce-in" style="animation-delay: 0.2s;">
+                    <div class="text-4xl font-bold text-white mb-2 animate-pulse">2,847+</div>
+                    <div class="text-blue-100">Active Users</div>
+                </div>
+                <div class="animate-bounce-in" style="animation-delay: 0.4s;">
+                    <div class="text-4xl font-bold text-white mb-2 animate-pulse">156+</div>
+                    <div class="text-blue-100">Cities Covered</div>
+                </div>
+                <div class="animate-bounce-in" style="animation-delay: 0.6s;">
+                    <div class="text-4xl font-bold text-white mb-2 animate-pulse">23</div>
+                    <div class="text-blue-100">Countries</div>
+                </div>
+                <div class="animate-bounce-in" style="animation-delay: 0.8s;">
+                    <div class="text-4xl font-bold text-white mb-2 animate-pulse">98%</div>
+                    <div class="text-blue-100">Satisfaction Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Topics Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 animate-fade-in">Our Support Areas</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We cover all aspects of the divorce process with specialized support groups for every situation.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Support Topics -->
+                <div class="group bg-white rounded-2xl p-6 card-hover animate-slide-up">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="user-check" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900">Women's Support</h3>
+                            <p class="text-sm text-gray-600">45 active members</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">Specialized support for women navigating divorce challenges.</p>
+                </div>
+
+                <div class="group bg-white rounded-2xl p-6 card-hover animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="user" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900">Men's Support</h3>
+                            <p class="text-sm text-gray-600">32 active members</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">Dedicated support groups for men going through divorce.</p>
+                </div>
+
+                <div class="group bg-white rounded-2xl p-6 card-hover animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="heart" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900">Emotional Support</h3>
+                            <p class="text-sm text-gray-600">28 active members</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">Emotional and mental health support during difficult times.</p>
+                </div>
+
+                <div class="group bg-white rounded-2xl p-6 card-hover animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="baby" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900">Child Custody</h3>
+                            <p class="text-sm text-gray-600">38 active members</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">Support for parents navigating child custody arrangements.</p>
+                </div>
+
+                <div class="group bg-white rounded-2xl p-6 card-hover animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="globe" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900">NRI Section</h3>
+                            <p class="text-sm text-gray-600">15 active members</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">Specialized support for Non-Resident Indians facing divorce.</p>
+                </div>
+
+                <div class="group bg-white rounded-2xl p-6 card-hover animate-slide-up" style="animation-delay: 0.5s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="dollar-sign" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900">Financial Support</h3>
+                            <p class="text-sm text-gray-600">22 active members</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">Guidance on alimony, maintenance, and financial planning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section (Simplified) -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">About Only Divorce</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        We are a <strong class="text-blue-600">professional support platform</strong> dedicated to helping individuals navigate the complex journey of divorce with dignity, understanding, and expert guidance.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Founded on the principle that sometimes divorce is the <strong class="text-blue-600">healthiest choice</strong>, we provide a safe, non-judgmental space where people can find the support they need.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-green-500"></i>
+                            <span class="text-gray-700">Expert Moderators</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-green-500"></i>
+                            <span class="text-gray-700">Complete Privacy</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-green-500"></i>
+                            <span class="text-gray-700">24/7 Support</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="check-circle" class="w-6 h-6 text-green-500"></i>
+                            <span class="text-gray-700">No Hidden Fees</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                            <div class="text-center">
+                                <i data-lucide="quote" class="w-12 h-12 text-blue-500 mx-auto mb-4"></i>
+                                <blockquote class="text-gray-700 italic mb-4">
+                                    "Only Divorce provided the understanding and support I needed when no one else could."
+                                </blockquote>
+                                <div class="text-sm text-gray-500">- Anonymous User</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Get In Touch</h2>
+                <p class="text-xl text-gray-300">We're here to support you every step of the way</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Contact Info -->
+                <div class="text-center animate-slide-up">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-bounce-in">
+                        <i data-lucide="mail" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Email Us</h3>
+                    <p class="text-gray-300">support@onlydivorce.in</p>
+                </div>
+
+                <div class="text-center animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-bounce-in">
+                        <i data-lucide="phone" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Call Us</h3>
+                    <p class="text-gray-300">+91-1800-DIVORCE</p>
+                </div>
+
+                <div class="text-center animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-bounce-in">
+                        <i data-lucide="clock" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">24/7 Support</h3>
+                    <p class="text-gray-300">Always Available</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="mt-16 max-w-2xl mx-auto">
+                <form class="bg-gray-800 rounded-2xl p-8 animate-fade-in">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                        <textarea rows="4" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 animate-glow">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center">
+                            <i data-lucide="heart" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Only Divorce</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 max-w-md">
+                        Your trusted partner for professional divorce support and guidance. We understand that sometimes divorce is the only path forward.
+                    </p>
+                    <div class="flex space-x-4">
+                        <i data-lucide="facebook" class="w-6 h-6 text-gray-400 hover:text-white cursor-pointer transition-colors"></i>
+                        <i data-lucide="twitter" class="w-6 h-6 text-gray-400 hover:text-white cursor-pointer transition-colors"></i>
+                        <i data-lucide="linkedin" class="w-6 h-6 text-gray-400 hover:text-white cursor-pointer transition-colors"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#features" class="text-gray-300 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Disclaimer</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2024 Only Divorce. All rights reserved. | Domain: onlydivorce.in
+                </p>
+                <p class="text-gray-500 text-sm mt-2">
+                    <strong class="text-red-400">Important:</strong> This platform provides support and guidance only. Not a substitute for professional legal advice.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Enhanced Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50 animate-fade-in">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full animate-bounce-in">
+                <div class="p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900" id="modalTitle">Login</h3>
+                        <button onclick="closeLoginModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+
+                    <form id="loginForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
+                            <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="Enter your mobile number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required>
+                        </div>
+
+                        <div id="otpSection" class="hidden">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Enter OTP</label>
+                            <input type="text" id="otp" name="otp" placeholder="Enter 6-digit OTP" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" maxlength="6">
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 animate-glow">
+                            <span id="loginBtnText">Send OTP</span>
+                        </button>
+
+                        <div class="text-center">
+                            <p class="text-sm text-gray-600">
+                                By logging in, you agree to our
+                                <a href="#" class="text-blue-600 hover:text-blue-700">Terms of Service</a>
+                                and
+                                <a href="#" class="text-blue-600 hover:text-blue-700">Privacy Policy</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        let currentUserType = 'user';
+
+        function showLoginModal(userType) {
+            currentUserType = userType;
+            const modalTitle = document.getElementById('modalTitle');
+            const titles = {
+                'user': 'User Login - Seeking Support',
+                'moderator': 'Moderator Login',
+                'admin': 'Super Admin Login'
+            };
+            modalTitle.textContent = titles[userType] || 'Login';
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('otpSection').classList.add('hidden');
+            document.getElementById('loginBtnText').textContent = 'Send OTP';
+            document.getElementById('loginForm').reset();
+        }
+
+        function scrollToFeatures() {
+            document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function redirectToDashboard(userType) {
+            const dashboards = {
+                'user': 'dashboard.html',
+                'moderator': 'moderator-dashboard.html',
+                'admin': 'admin-dashboard.html'
+            };
+            
+            const targetPage = dashboards[userType];
+            if (targetPage) {
+                // Try to access the page first
+                fetch(targetPage)
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = targetPage;
+                        } else {
+                            throw new Error('Page not found');
+                        }
+                    })
+                    .catch(error => {
+                        console.error(`Error loading ${targetPage}:`, error);
+                        alert(`The ${userType} dashboard is not available. Please contact support.`);
+                    });
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            const otpSection = document.getElementById('otpSection');
+            const otpField = document.getElementById('otp');
+            const loginBtnText = document.getElementById('loginBtnText');
+
+            if (!otpSection.classList.contains('hidden')) {
+                const otp = otpField.value;
+                if (otp.length === 6) {
+                    setTimeout(() => {
+                        alert(`${currentUserType.charAt(0).toUpperCase() + currentUserType.slice(1)} login successful!`);
+                        closeLoginModal();
+                        redirectToDashboard(currentUserType);
+                    }, 1000);
+                } else {
+                    alert('Please enter a valid 6-digit OTP');
+                    otpField.focus();
+                }
+            } else {
+                if (mobileNumber.length === 10) {
+                    setTimeout(() => {
+                        otpSection.classList.remove('hidden');
+                        loginBtnText.textContent = 'Verify OTP';
+                    }, 1000);
+                } else {
+                    alert('Please enter a valid 10-digit mobile number');
+                    document.getElementById('mobileNumber').focus();
+                }
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-slide-up, .animate-fade-in, .animate-bounce-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
